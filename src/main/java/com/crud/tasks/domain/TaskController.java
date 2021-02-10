@@ -1,6 +1,6 @@
 package com.crud.tasks.domain;
 
-import com.crud.tasks.contoller.TaskNotFoundException;
+import com.crud.tasks.controller.TaskNotFoundException;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
