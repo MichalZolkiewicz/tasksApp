@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/trello")
 @RequiredArgsConstructor
-public class TrelloContoller {
+public class TrelloController {
 
     @Autowired
     private final TrelloFacade trelloFacade;
