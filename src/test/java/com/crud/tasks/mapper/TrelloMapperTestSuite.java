@@ -28,7 +28,6 @@ class TrelloMapperTestSuite {
         List<TrelloListDto> trelloListDtos = new ArrayList<>();
         trelloListDtos.add(trelloListDto);
 
-
         TrelloBoardDto trelloBoardDto = new TrelloBoardDto();
         trelloBoardDto.setId("two");
         trelloBoardDto.setName("second");
@@ -87,14 +86,14 @@ class TrelloMapperTestSuite {
 
     @Test
     void testMapToCard() {
-        TrelloCard trelloCard = new TrelloCard("one", "card", "top", "1", "test");
+        TrelloCard trelloCard = new TrelloCard("one", "card", "top", "1");
 
         TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
 
-        assertEquals("one", trelloCardDto.getName());
-        assertEquals("card", trelloCardDto.getDesc());
-        assertEquals("top", trelloCardDto.getPos());
-        assertEquals("1", trelloCardDto.getListId());
+        TrelloCardDto expectedTrelloCardDto = new TrelloCardDto("one", "card", "top", "1");
+
+        assertEquals(expectedTrelloCardDto, trelloCardDto);
+
     }
 
     @Test
@@ -106,7 +105,7 @@ class TrelloMapperTestSuite {
         trelloCardDto.setListId("1");
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
 
-        TrelloCard expectedTrelloCard = new TrelloCard("one", "card", "top", "1", "test");
+        TrelloCard expectedTrelloCard = new TrelloCard("one", "card", "top", "1");
 
         assertEquals(expectedTrelloCard, trelloCard);
     }

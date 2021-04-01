@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Component
 @SpringBootTest
@@ -25,9 +26,9 @@ class TaskMapperTest {
 
         Task task = taskMapper.mapToTask(taskDto);
 
-        assertThat(task.getId()).isEqualTo(20L);
-        assertThat(task.getTitle()).isEqualTo("Task one");
-        assertThat(task.getContent()).isEqualTo("testing");
+        Task expectedTask = new Task(20L, "Task one", "testing");
+
+        assertEquals(expectedTask, task);
     }
 
     @Test
@@ -36,9 +37,10 @@ class TaskMapperTest {
 
         TaskDto taskDto = taskMapper.mapToTaskDto(task);
 
-        assertThat(taskDto.getId()).isEqualTo(20);
-        assertThat(taskDto.getTitle()).isEqualTo("Task one");
-        assertThat(taskDto.getContent()).isEqualTo("testing");
+        TaskDto expectedTaskDto = new TaskDto(20L, "Task one", "testing");
+
+        assertEquals(expectedTaskDto, taskDto);
+
     }
 
     @Test

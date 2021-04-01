@@ -5,8 +5,6 @@ import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -127,15 +125,13 @@ class TaskControllerTest {
 
     @Test
     void testShouldDeleteTask() throws Exception {
-        //Task task = new Task(10L,"test1", "content1");
-
-        //when(dbService.getTask(task.getId())).thenReturn(Optional.ofNullable(task));
+        Task task = new Task(10L,"test1", "content1");
+        when(dbService.saveTask(task)).thenReturn(task);
 
         mockMvc
             .perform(MockMvcRequestBuilders
-                    .delete("/v1/task/deleteTask")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .param("taskId", "10"))
+                    .delete("/v1/task/deleteTask/{taskId}", "10")
+                    .contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
