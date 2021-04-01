@@ -39,6 +39,6 @@ public class TrelloMapper {
     }
 
     public TrelloCard mapToCard(final TrelloCardDto trelloCardDto) {
-        return new TrelloCard(trelloCardDto.getName(), trelloCardDto.getDesc(), trelloCardDto.getPos(), trelloCardDto.getListId());
+        return new TrelloCard(trelloCardDto.getName(), trelloCardDto.getDesc(), trelloCardDto.getPos(), trelloCardDto.getListId(), "test");
     }
 }

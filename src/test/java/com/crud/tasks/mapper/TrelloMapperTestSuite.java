@@ -21,11 +21,18 @@ class TrelloMapperTestSuite {
     @Test
     void testMapToBoard() {
 
-        TrelloListDto trelloListDto = new TrelloListDto("one", "first", false);
+        TrelloListDto trelloListDto = new TrelloListDto();
+        trelloListDto.setId("one");
+        trelloListDto.setName("first");
+        trelloListDto.setClosed(false);
         List<TrelloListDto> trelloListDtos = new ArrayList<>();
         trelloListDtos.add(trelloListDto);
 
-        TrelloBoardDto trelloBoardDto = new TrelloBoardDto("two", "second", trelloListDtos);
+
+        TrelloBoardDto trelloBoardDto = new TrelloBoardDto();
+        trelloBoardDto.setId("two");
+        trelloBoardDto.setName("second");
+        trelloBoardDto.setLists(trelloListDtos);
         List<TrelloBoardDto> trelloBoardDtos = new ArrayList<>();
         trelloBoardDtos.add(trelloBoardDto);
 
@@ -42,6 +49,7 @@ class TrelloMapperTestSuite {
         trelloLists.add(trelloList);
 
         TrelloBoard trelloBoard = new TrelloBoard("two", "second", trelloLists);
+
         List<TrelloBoard> trelloBoards = new ArrayList<>();
         trelloBoards.add(trelloBoard);
 
@@ -79,7 +87,7 @@ class TrelloMapperTestSuite {
 
     @Test
     void testMapToCard() {
-        TrelloCard trelloCard = new TrelloCard("one", "card", "top", "1");
+        TrelloCard trelloCard = new TrelloCard("one", "card", "top", "1", "test");
 
         TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
 
@@ -91,13 +99,15 @@ class TrelloMapperTestSuite {
 
     @Test
     void testMapToCardDto() {
-        TrelloCardDto trelloCardDto = new TrelloCardDto("one", "card", "top", "1");
-
+        TrelloCardDto trelloCardDto = new TrelloCardDto();
+        trelloCardDto.setName("one");
+        trelloCardDto.setDesc("card");
+        trelloCardDto.setPos("top");
+        trelloCardDto.setListId("1");
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
 
-        assertEquals("one", trelloCard.getName1());
-        assertEquals("card", trelloCard.getDescription());
-        assertEquals("top", trelloCard.getPos());
-        assertEquals("1", trelloCard.getListId());
+        TrelloCard expectedTrelloCard = new TrelloCard("one", "card", "top", "1", "test");
+
+        assertEquals(expectedTrelloCard, trelloCard);
     }
 }
