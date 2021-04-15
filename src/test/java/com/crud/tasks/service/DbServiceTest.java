@@ -50,7 +50,7 @@ class DbServiceTest {
 
         List<Task> taskList = dbService.getAllTasks();
 
-        assertEquals(1, taskList.size());
+        assertEquals(7, taskList.size());
 
         dbService.deleteTask(id);
     }
